@@ -1,0 +1,26 @@
+<div class="image-cover hero-header bg-dark" data-overlay="0" style="height: 100vh;">
+    <div class="container">
+        <div class="form-group">
+            <div class="card bg-transparent shadow text-center p-4">
+                <div class="card-title">
+                    <h3>
+                        Veri Yükle
+                    </h3>
+                    <p>
+                        Tek seferde en fazla 5 dosya yükleyebilirsiniz.
+                    </p>
+                </div>
+                <div class="card-body">
+                    <form action="/data/upload" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="file" class="form-control" name="files">
+                        </div>
+                        <button class="btn btn-primary btn-sm">
+                            Veri Yükle
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

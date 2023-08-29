@@ -2,12 +2,17 @@ import { NestFactory } from '@nestjs/core';
 import { NestFastifyApplication, FastifyAdapter } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 import { join } from 'path';
+import fastifyMultipart from '@fastify/multipart';
+import { AppDataSource } from './customService/mysql.service';
+import secureSession from '@fastify/secure-session'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
   );
+
+  AppDataSource.initialize().then(() => console.log('Database connect success')).catch((err) => console.log('Database connect fail', err));
   app.useStaticAssets({
     root: join(__dirname, '..', 'src/assets/public'),
     prefix: '/public/',
@@ -20,7 +25,20 @@ async function bootstrap() {
     layout: 'layout/main'
   });
   
-  
+  app.register(fastifyMultipart)
+  await app.register(secureSession, {
+    secret: 'averylogphrasebiggerthanthirtytwochars',
+    salt: 'mq9hDxBVDbspDR6n',
+    cookieName: 'fahriyaskin',
+    cookie: {
+      path: '/',
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 60 // 7 days
+    }
+    // TODO: add date helpers
+  });
   await app.listen(process.env.PORT ?? 3000, process.env.HOST || '0.0.0.0')
 }
+
 bootstrap();

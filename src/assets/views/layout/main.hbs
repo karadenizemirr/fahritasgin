@@ -16,12 +16,16 @@
 <body>
 
   <div id="main-wrapper">
-    <div class="header header-transparent change-logo" >
+    <div class="header header-transparent change-logo">
       <div class="container">
         <nav id="navigation" class="navigation navigation-landscape">
           <div class="nav-header">
-            <a class="nav-brand static-logo" href="#"><h1 class="text-white mt-3" style="font-size: 15px;">Fahri TAŞKIRAN</h1></a>
-            <a class="nav-brand fixed-logo" href="#"><h1 class="text-black mt-3" style="font-size: 15px;">Fahri TAŞKIRAN</h1></a>
+            <a class="nav-brand static-logo" href="#">
+              <h1 class="text-white mt-3" style="font-size: 15px;">Fahri TAŞKIRAN</h1>
+            </a>
+            <a class="nav-brand fixed-logo" href="#">
+              <h1 class="text-black mt-3" style="font-size: 15px;">Fahri TAŞKIRAN</h1>
+            </a>
             <div class="nav-toggle"></div>
             <div class="mobile_nav">
               <ul>
@@ -35,17 +39,29 @@
           <div class="nav-menus-wrapper" style="transition-property: none;">
             <ul class="nav-menu">
 
-              <li><a href="documentations.html">Anasayfa</a></li>
-              <li><a href="documentations.html">Veri Yükle</a></li>
+              <li><a href="/">Anasayfa</a></li>
+              {{#if isLogin}}
+              <li><a href="/data/upload">Veri Yükle</a></li>
               <li><a href="documentations.html">Veri Deposu</a></li>
+              {{/if}}
 
             </ul>
-
+            {{#if isLogin}}
             <ul class="nav-menu nav-menu-social align-to-right">
               <li class="list-buttons ms-2">
-                <a href="signup.html" class="bg-info">Giriş Yap!</a>
+                <a href="/user/logout" class="bg-info">Çıkış
+                  Yap!</a>
               </li>
             </ul>
+            {{else}}
+            <ul class="nav-menu nav-menu-social align-to-right">
+              <li><a href="/user/register">Kayıt Ol</a></li>
+              <li class="list-buttons ms-2">
+                <a href="JavaScript:Void(0);" data-bs-toggle="modal" data-bs-target="#login" class="bg-info">Giriş
+                  Yap!</a>
+              </li>
+            </ul>
+            {{/if}}
           </div>
         </nav>
       </div>
@@ -58,8 +74,42 @@
 
 
     {{{body}}}
+    <!-- Log In Modal -->
+    <div class="modal auto-off fade" id="login" tabindex="-1" role="dialog" aria-labelledby="loginmodal"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
+        <div class="modal-content" id="loginmodal">
+          <span class="mod-close" data-bs-dismiss="modal" aria-hidden="true"><i class="fas fa-close"></i></span>
+          <div class="modal-header">
+            <div class="mdl-title">
+              <h4 class="modal-header-title">Giriş Yap</h4>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="modal-login-form">
+              <form method="post" action="/user/login">
+                <div class="form-floating mb-4">
+                  <input type="text" class="form-control" placeholder="Kullanıcı Adı" name="username">
+                  <label>Kullanıcı Adı</label>
+                </div>
 
-
+                <div class="form-floating mb-4">
+                  <input type="password" class="form-control" placeholder="Şifreniz" name="password">
+                  <label>Şifre</label>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-primary full-width font--bold btn-lg">Giriş Yap</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <p>Halen bir hesabınız yok mu ?<a href="/user/register" class="theme-cl font--bold ms-1">Kayıt Ol</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Modal -->
   </div>
   <!-- ============================================================== -->
   <!-- End Wrapper -->
