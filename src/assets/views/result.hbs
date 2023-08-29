@@ -1,0 +1,49 @@
+<div class="hero-header bg-dark w-100" data-overlay="0" style="height: 100vh;">
+    <div class="container-fluid">
+        <div class="title text-center">
+            <h1>
+                Veri Tablosu
+            </h1>
+        </div>
+        <div class="content">
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>Kod</th>
+                        <th>Günlük Değişim</th>
+                        <th>Kapanış F.</th>
+                        <th>BİST 100</th>
+                        <th>BİST 30</th>
+                        <th>MSCI Turkey</th>
+                        <th>Özkaynaklar</th>
+                        <th>Ö.Sermaye</th>
+                        <th>Top. Aktifler</th>
+                        <th>PD</th>
+                        <th>Halka Açıklık</th>
+                        <th>HA-PD</th>
+                        <th>İşlem Hacmi</th>
+                        <th>Net Borç</th>
+                        <th>FD + Net Borç</th>
+                        <th>Önceki Yıl</th>
+                        <th>S.Dört.Çey.</th>
+                        <th>Aktif Kararlılığı</th>
+                        <th>F/K</th>
+                        <th>PD/DD</th>
+                        <th>FD/FAVÖK</th>
+                        <th>PD/S</th>
+                        <th>Net Borç</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        let table = new DataTable('#data-table', {
+            responsive: true
+        })
+    })
+</script>

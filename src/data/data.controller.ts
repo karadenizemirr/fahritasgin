@@ -25,4 +25,13 @@ export class DataController {
             title:'Veri Yükle'
         } 
     }
+
+    // Get Data
+    @Get('all')
+    @Render('result')
+    async get_data_page(){
+        return {
+            title:'Veriler'
+        }
+    }
 }
